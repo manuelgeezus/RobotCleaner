@@ -1,11 +1,12 @@
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlTypes;
+using System.Linq;
+using RobotCleaner.Interfaces;
 
 namespace RobotCleaner
 {
-    public class Robot
+    public class Robot : iRobot
     {
         public string  currentDirection = robotDirections.right.ToString();
         public int currentN = 0;
@@ -26,16 +27,16 @@ namespace RobotCleaner
         public int clean()
         {
             bool finishClean = false;
-            Console.WriteLine("Columns: "+this.Columns +", Rows: " + this.Rows);
+            //Console.WriteLine("Columns: "+this.Columns +", Rows: " + this.Rows);
 
             while(!finishClean)
             {
                 if(currentM >= this.Columns || currentN >= this.Rows || currentN < 0 || currentM < 0)
                 {
-                    Console.WriteLine("OutOfBorder: "+ currentN+","+currentM);
+                    //Console.WriteLine("OutOfBorder: "+ currentN+","+currentM);
                     turn();
                 }
-                Console.WriteLine("Current Position: " + currentN+","+currentM+", Val: "+Board[currentN][currentM]);
+                //Console.WriteLine("Current Position: " + currentN+","+currentM+", Val: "+Board[currentN][currentM]);
                 if(Board[currentN][currentM] == '.')
                 {
                     cleanedList.Add(currentN+","+currentM);
