@@ -13,11 +13,16 @@ namespace RobotCleaner
             //4
             //string inputString = "..x...,...xx.,.x..x.,.xx...,.xxx..,......";
             //24
-            string inputString = "......,x.x...,....x.,.x....,...x..,......";
+            //string inputString = "......,x.x...,....x.,.x....,...x..,......";
             //string inputString = ".X.";
-            //inputString = Console.ReadLine();
-            string[] board = inputString.Split(',');
-            Console.WriteLine("Cleaned Squares: " + solution(board));
+            string[] lines = System.IO.File.ReadAllLines(@"BoardsTesting.txt");
+            foreach (string line in lines)
+            {
+                // Use a tab to indent each line of the file.
+                //Console.WriteLine("\t" + line);
+                string[] board = line.Split(',');
+                Console.WriteLine("Cleaned Squares: " + solution(board));
+            }
         }
 
         public static int solution(string[] R)
